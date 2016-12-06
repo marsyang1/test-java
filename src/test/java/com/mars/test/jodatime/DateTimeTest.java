@@ -125,4 +125,12 @@ public class DateTimeTest {
         log.info(title + time);
     }
 
+    @Test
+    public void test2(){
+        DateTime  time = new DateTime().withTimeAtStartOfDay();
+        DateTime  testDate = new DateTime().withTimeAtStartOfDay();
+        log.info(" testDate.isAfter(time) = " + testDate.isAfter(time));
+        log.info("System.currentTimeMillis() = " + System.currentTimeMillis());
+    }
+
 }
