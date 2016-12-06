@@ -1,4 +1,4 @@
-package com.mars.test.guava.cache;
+package com.mars.test.guava;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
