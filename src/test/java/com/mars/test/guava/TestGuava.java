@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * Created by mars on 2016/8/31.
  */
 @Slf4j
-public class TestGuavaCache {
+public class TestGuava {
 
     int INTERVAL_MINUTE = 1;
 
