@@ -15,7 +15,7 @@ public class TestCollection {
 
 
     @Test
-    public void test1() throws Exception {
+    public void testDisjoint() throws Exception {
         List<Integer> a = Lists.newArrayList(1, 2, 3);
         List<Integer> b = Lists.newArrayList(4);
         List<Integer> c = Lists.newArrayList(2);
