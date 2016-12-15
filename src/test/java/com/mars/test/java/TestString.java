@@ -26,18 +26,20 @@ public class TestString {
         String test6 = "123123412";
         String test7 = "asd12";
         String test8 = "asd;[;";
-        String test9 = "asdgfjs2342342";
+        String test9 = "asdgfj_-342342";
+        String test10 = "as-_";
 
         log.info("test5.match = " + test5.matches("\\w{2,6}"));
         log.info("test6.match = " + test6.matches("\\w{2,6}"));
         log.info("test7.match = " + test7.matches("\\w{2,6}"));
         log.info("test8.match = " + test8.matches("\\w{2,6}"));
         log.info("test9.match = " + test9.matches("\\w{2,6}"));
+        log.info("test10.match = " + test10.matches("\\w{2,6}"));
         Assert.assertTrue(test5.matches("\\w{2,6}"));
         Assert.assertFalse(test6.matches("\\w{2,6}"));
         Assert.assertTrue(test7.matches("\\w{2,6}"));
         Assert.assertFalse(test8.matches("\\w{2,6}"));
-        Assert.assertFalse(test9.matches("\\w{2,6}"));
+        Assert.assertFalse(test10.matches("\\w{2,6}"));
     }
 
 
