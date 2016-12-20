@@ -13,6 +13,9 @@ import java.util.Map;
 @Slf4j
 public class TestTable {
 
+    /**
+     * usecase : for double uni key to get object
+     */
     @Test
     public void test1(){
         Table<String, String, String> employeeTable = HashBasedTable.create();

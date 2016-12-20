@@ -17,6 +17,10 @@ dependencies {
             'com.google.guava:guava:19.0',
             'ch.qos.logback:logback-classic:1.1.7',
             'org.apache.commons:commons-lang3:3.5',
+            'org.eclipse.collections:eclipse-collections-api:8.0.0',
+            'org.eclipse.collections:eclipse-collections:8.0.0',
+            'org.eclipse.collections:eclipse-collections-forkjoin:8.0.0'
     )
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.eclipse.collections:eclipse-collections-testutils:8.0.0'
 }
