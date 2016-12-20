@@ -1,6 +1,7 @@
 package com.mars.test.guava;
 
 import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Table;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -36,9 +37,10 @@ public class TestTable {
 
         Map<String, String> employeeMs = employeeTable.row("Microsoft");
         log.info("employeeMs");
-        for(String key : employeeMs.keySet()){
-            log.info("employeeMs " + key + ", name =" + employeeMs.get(key));
-        }
+        employeeMs.entrySet()
+                .forEach(entry -> log.info("employeeMs " + entry.getKey() + ", name =" + entry.getValue()));
+
+
 
     }
 
