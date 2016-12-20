@@ -133,4 +133,10 @@ public class DateTimeTest {
         log.info("System.currentTimeMillis() = " + System.currentTimeMillis());
     }
 
+    @Test
+    public void testToString(){
+        final String pattern = "yyyyMMddhhmmss";
+        log.info(" DateTime.toString("+pattern+") = " + DateTime.now().toString(pattern) );
+    }
+
 }
