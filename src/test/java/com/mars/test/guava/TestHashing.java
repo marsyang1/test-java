@@ -19,4 +19,5 @@ public class TestHashing {
         log.info("hashing Text = " + hashingText);
         Assert.assertEquals("81dc9bdb52d04dc20036dbd8313ed055",hashingText);
     }
+
 }
