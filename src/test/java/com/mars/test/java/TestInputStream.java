@@ -17,6 +17,7 @@ import java.util.Random;
 
 /**
  * Created by USER on 2016/12/1.
+ * http://stackoverflow.com/questions/782178/how-do-i-convert-a-string-to-an-inputstream-in-java
  */
 @Slf4j
 public class TestInputStream {
