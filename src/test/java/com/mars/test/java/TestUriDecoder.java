@@ -1,11 +1,11 @@
 package com.mars.test.java;
 
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+        import lombok.extern.slf4j.Slf4j;
+        import org.junit.Test;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+        import java.io.UnsupportedEncodingException;
+        import java.net.URLDecoder;
+        import java.net.URLEncoder;
 
 /**
  * Created by USER on 2017/1/9.
