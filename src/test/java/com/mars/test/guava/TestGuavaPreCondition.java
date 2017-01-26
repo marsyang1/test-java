@@ -38,6 +38,16 @@ public class TestGuavaPreCondition {
     }
 
 
+    @Test
+    public void testPrecondition() throws IllegalStateException {
+        try{
+            Preconditions.checkState(false,"测试错误Msg");
+        } catch (IllegalStateException ise){
+            log.info("errorMsg = " + ise.getMessage());
+        }
+    }
+
+
     public boolean isActive() {
         return false;
     }
