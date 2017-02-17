@@ -32,18 +32,19 @@ public class TestGuavaCache {
         normalCache.put("mg112",System.currentTimeMillis());
         normalCache.put("qt113",System.currentTimeMillis());
         ConcurrentMap<String, Long> map = normalCache.asMap();
-        for(String key : map.keySet()){
-            log.info("map key = " + key +" , value = " + map.get(key));
-        }
+        normalCache.asMap().forEach((key,value)->{
+            log.info("map key = " + key +" , value = " + value);
+        });
+        log.info("map get pt111 " + normalCache.asMap().get("pt111"));
+        // test after time limit
         try {
-            Thread.sleep(2000);                 //1000 milliseconds is one second.
+            Thread.sleep(2000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        map = normalCache.asMap();
-        for(String key : map.keySet()){
-            log.info("map key = " + key +" , value = " + map.get(key));
-        }
+        normalCache.asMap().forEach((key,value)->{
+            log.info("map key = " + key +" , value = " + value);
+        });
         log.info("map size = " + map.size());
         log.info("map get pt111 " + normalCache.asMap().get("pt111"));
         log.info("done");
