@@ -67,7 +67,7 @@ public class TestConcurrent {
                     lock = LockMap.get("aaa");
                     log.info("Locked: " + lock.isLocked());
                     log.info("Held by me: " + lock.isHeldByCurrentThread());
-                    boolean acquired = lock.tryLock(100, TimeUnit.MINUTES);
+                    boolean acquired = lock.tryLock(100, TimeUnit.SECONDS);
                     log.info("Lock acquired: " + acquired);
                     count++;
                 } catch (InterruptedException e) {
@@ -75,7 +75,7 @@ public class TestConcurrent {
                     log.error("Locked: " + lock.isLocked());
                     log.error("Held by me: " + lock.isHeldByCurrentThread());
                     log.info("Lock again !!!");
-                    boolean acquired = lock.tryLock(100, TimeUnit.MINUTES);
+                    boolean acquired = lock.tryLock(100, TimeUnit.SECONDS);
                     log.info("Lock acquired: " + acquired);
                     count++;
                 } catch (ExecutionException e) {
