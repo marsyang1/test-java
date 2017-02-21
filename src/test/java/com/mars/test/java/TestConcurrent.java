@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.IntStream;
 
 import static java.lang.Thread.sleep;
 
@@ -38,16 +39,8 @@ public class TestConcurrent {
     public void test1() throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(100);
         List<Callable<String>> task = Lists.newArrayList();
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
-        task.add(getTask());
+        IntStream.range(0,100)
+                .forEach(count -> task.add(getTask()));
 
         executor.invokeAny(task);
         log.info("waiting task");
