@@ -1,4 +1,4 @@
-package com.mars.test.java;
+package com.mars.test.design;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -22,7 +22,7 @@ import static java.lang.Thread.sleep;
  * Created by USER on 2017/2/21.
  */
 @Slf4j
-public class TestConcurrent {
+public class TestReentrantLock {
 
     private static final LoadingCache<String, ReentrantLock> LockMap = CacheBuilder.newBuilder()
             .build(
