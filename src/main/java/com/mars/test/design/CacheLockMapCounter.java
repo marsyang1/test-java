@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by yangyuchi on 22/02/2017.
  */
 @Slf4j
-public class LockMapCounter implements Counter{
+public class CacheLockMapCounter implements Counter{
 
     private static final LoadingCache<String, ReentrantLock> LockMap = CacheBuilder.newBuilder()
             .build(
