@@ -18,10 +18,16 @@ public class LockMapSyncCounter {
     private int count=0;
 
     public synchronized void addCount(String key){
+        Object keyObject = LOCK_MAP.get(key);
+        if(keyObject == null){
+            LOCK_MAP.put(key,key);
+            keyObject = key;
+        }
+//        return keyObject;
         count++;
     }
 
-    private Object getKeyObject(String key){
+    private synchronized Object getKeyObject(String key){
         Object keyObject = LOCK_MAP.get(key);
         if(keyObject == null){
             LOCK_MAP.put(key,key);

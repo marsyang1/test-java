@@ -1,4 +1,4 @@
-package com.mars.test.design;
+package com.mars.test.java.concurrency;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by yangyuchi on 22/02/2017.
  */
 @Slf4j
-public class LockCounter implements Counter{
+public class LockCounter implements Counter {
 
     final ReentrantLock lock = new ReentrantLock();
 

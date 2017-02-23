@@ -3,18 +3,20 @@ package com.mars.test.design;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.mars.test.java.concurrency.Counter;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by yangyuchi on 22/02/2017.
  */
 @Slf4j
-public class CacheLockMapCounter implements Counter{
+public class CacheLockMapCounter implements LockMapCounter {
 
     private static final LoadingCache<String, ReentrantLock> LockMap = CacheBuilder.newBuilder()
             .build(
@@ -25,16 +27,15 @@ public class CacheLockMapCounter implements Counter{
                         }
                     });
 
-    @Getter
-    private int count = 0;
+    private AtomicInteger count = new AtomicInteger();
 
-    public void addCount() {
+    public void addCount(String key) {
         ReentrantLock lock = null;
         for (int i = 0; i < 10; i++) {
             try {
-                lock = LockMap.get("");
+                lock = LockMap.get(key);
                 lock.tryLock(10, TimeUnit.SECONDS);
-                count++;
+                count.addAndGet(1);
                 return;
             } catch (InterruptedException e) {
                 continue;
@@ -47,6 +48,11 @@ public class CacheLockMapCounter implements Counter{
                 }
             }
         }
+    }
+
+    @Override
+    public int getCount() {
+        return count.get();
     }
 
 

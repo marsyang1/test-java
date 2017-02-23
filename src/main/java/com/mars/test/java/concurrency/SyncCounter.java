@@ -1,4 +1,4 @@
-package com.mars.test.design;
+package com.mars.test.java.concurrency;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
  * Created by yangyuchi on 22/02/2017.
  */
 @Slf4j
-public class SyncCounter implements Counter{
+public class SyncCounter implements Counter {
 
     @Getter
     private int count=0;

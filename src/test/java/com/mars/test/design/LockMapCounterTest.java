@@ -1,6 +1,9 @@
 package com.mars.test.design;
 
 import com.google.common.base.Stopwatch;
+import com.mars.test.java.concurrency.Counter;
+import com.mars.test.java.concurrency.LockCounter;
+import com.mars.test.java.concurrency.SyncCounter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -10,7 +13,7 @@ import java.util.stream.IntStream;
  * Created by yangyuchi on 23/02/2017.
  */
 @Slf4j
-public class LockCounterTest {
+public class LockMapCounterTest {
 
     @Test
     public void addCount() throws Exception {

@@ -1,4 +1,4 @@
-package com.mars.test.design;
+package com.mars.test.java.concurrency;
 
 import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;

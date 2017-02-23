@@ -7,8 +7,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by USER on 2017/2/18.
  * Reference : http://winterbe.com/posts/2015/04/30/java8-concurrency-tutorial-synchronized-locks-examples/
