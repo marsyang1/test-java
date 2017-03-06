@@ -15,7 +15,7 @@ public class TestBigDecimal {
     @Test
     public void test1(){
         BigDecimal decimal = BigDecimal.valueOf(8999990752.57);
-        log.info("decimal = " + decimal);
+        log.info("decimal = " + decimal.toPlainString());
     }
 
 
