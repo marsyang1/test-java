@@ -20,7 +20,6 @@ public class SyncMultiCounter implements MultiCounter {
         log.info("add count1");
         log.info("enter sleep");
         try {
-            // thread to sleep for 1000 milliseconds
             Thread.sleep(5000);
         } catch (Exception e) {
             log.error(e.getMessage());
