@@ -12,6 +12,10 @@ import java.util.stream.IntStream;
 @Slf4j
 public class SyncMultiCounterTest {
 
+    /**
+     * test synchronized effect range
+     * @throws Exception
+     */
     @Test
     public void addCount() throws Exception {
         Stopwatch stopwatch = Stopwatch.createStarted();
