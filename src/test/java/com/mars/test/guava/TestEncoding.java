@@ -34,7 +34,8 @@ public class TestEncoding {
         final String mail = "qwer1234";
         String encode = BaseEncoding.base64().encode(mail.getBytes()).toString();
         log.info("qwer1234 base64  encode = " + encode);
-
+        String decode = BaseEncoding.base64().decode(encode).toString();
+        log.info("decode string = " + decode);
     }
 
 }
