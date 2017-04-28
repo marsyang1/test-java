@@ -3,6 +3,7 @@ package com.mars.test.okHttp;
 import com.google.gson.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -52,8 +53,18 @@ public class TestOkHttpClient {
 
 
     @Test
-    public void testPost() {
-
+    public void testPost() throws IOException {
+        String postUrl = "";
+        String requestJson = "";
+        FormBody body = new FormBody.Builder()
+                .add("data", requestJson)
+                .build();
+        Request request = new Request.Builder()
+                .url(postUrl)
+                .post(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        Assert.assertTrue(response.isSuccessful());
     }
 
     @Data
