@@ -1,4 +1,4 @@
-package com.mars.test.easyrule;
+package com.mars.test.easyrule.shop;
 
 import lombok.Data;
 

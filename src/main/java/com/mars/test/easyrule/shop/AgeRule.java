@@ -1,4 +1,4 @@
-package com.mars.test.easyrule;
+package com.mars.test.easyrule.shop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jeasy.rules.annotation.Rule;
@@ -16,31 +16,21 @@ public class AgeRule extends BasicRule {
 
     private Person person;
 
-    public AgeRule(Person person) {
-        super("AgeRule",
-                "Check if person's age is > 18 and marks the person as adult", 1);
-        this.person = person;
-    }
-
-    public boolean evaluate() {
-        return person.getAge() > ADULT_AGE;
-
-    }
-
-    public void execute() {
-        person.setAdult(true);
-        log.info("Person "+person.getName()+" has been marked as adult");
+    public AgeRule() {
+        super("AgeRule", "Check if person's age is > 18 and marks the person as adult", 1);
     }
 
     @Override
     public boolean evaluate(Facts facts) {
+        Person person = (Person) facts.get("person");
         return person.getAge() > ADULT_AGE;
     }
 
     @Override
     public void execute(Facts facts) throws Exception {
-        super.execute(facts);
+        Person person = (Person) facts.get("person");
         person.setAdult(true);
         log.info("Person "+person.getName()+" has been marked as adult");
+        System.out.println();
     }
 }
