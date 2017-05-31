@@ -3,6 +3,7 @@ package com.mars.test.easyrule.fizz;
 
 import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
+import org.jeasy.rules.annotation.Fact;
 import org.jeasy.rules.annotation.Priority;
 import org.jeasy.rules.annotation.Rule;
 
@@ -12,21 +13,16 @@ import org.jeasy.rules.annotation.Rule;
 @Rule
 public class NonFizzBuzzRule {
 
-    private int input;
-
     @Condition
-    public boolean isNotFizzNorBuzz() {
-        // can return true here
-        return input % 5 != 0 || input % 7 != 0;
+    public boolean isNotFizzNorBuzz(@Fact("number") Integer number) {
+        // can return true, because this is the latest rule to trigger according to assigned priorities
+        // and in which case, the number is not fizz nor buzz
+        return number % 5 != 0 || number % 7 != 0;
     }
 
     @Action
-    public void printInput() {
-        System.out.print(input);
-    }
-
-    public void setInput(int input) {
-        this.input = input;
+    public void printInput(@Fact("number") Integer number) {
+        System.out.print(number);
     }
 
     @Priority
