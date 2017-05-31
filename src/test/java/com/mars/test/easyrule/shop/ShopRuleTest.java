@@ -1,17 +1,11 @@
 package com.mars.test.easyrule.shop;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
-import org.jeasy.rules.annotation.Fact;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.api.RulesEngine;
-import org.jeasy.rules.core.BasicRule;
 import org.jeasy.rules.core.RulesEngineBuilder;
 import org.junit.Test;
-
-import java.util.List;
 
 /**
  * Created by USER on 2017/5/31.
@@ -20,10 +14,12 @@ import java.util.List;
 public class ShopRuleTest {
 
     @Test
-    public void test1(){
+    public void test1() {
         Person tom = new Person("Tom", 14);
         Facts facts = new Facts();
         facts.put("person", tom);
+        String wine = "Vodka";
+        facts.put("wine", wine);
 
         // create a rules set
         Rules rules = new Rules();
@@ -36,15 +32,15 @@ public class ShopRuleTest {
                 .withSilentMode(true)
                 .build();
 
-        System.out.println("Tom: Hi! can I have some Vodka please?");
+        System.out.println(tom.getName() + ": Hi! can I have some " + wine + " please?");
         rulesEngine.fire(rules, facts);
 
         Person bob = new Person("Bob", 20);
-        facts = new Facts();
         facts.put("person", bob);
-        facts.put("wine","Vodka");
+        wine = "Whisky";
+        facts.put("wine", wine);
 
-        System.out.println("Tom: Hi! can I have some Vodka please?");
+        System.out.println(bob.getName() + ": Hi! can I have some " + wine + " please?");
         rulesEngine.fire(rules, facts);
 
     }
