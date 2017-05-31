@@ -27,13 +27,21 @@ public class ShopRuleTest {
         rules.register(new AlcoholRule());
         rules.register(new AdultAlcoholRule());
 
+        // create a Listener
+        ShopRuleFailureListener listener = new ShopRuleFailureListener();
+
         //create a rules engine and fire rules on known facts
         RulesEngine rulesEngine = RulesEngineBuilder.aNewRulesEngine()
                 .withSilentMode(true)
+                .withSkipOnFirstFailedRule(true)
+                .withRuleListener(listener)
                 .build();
 
         System.out.println(tom.getName() + ": Hi! can I have some " + wine + " please?");
         rulesEngine.fire(rules, facts);
+        if(!listener.isSuccess()){
+            log.warn(listener.getFailureMessage());
+        }
 
         Person bob = new Person("Bob", 20);
         facts.put("person", bob);

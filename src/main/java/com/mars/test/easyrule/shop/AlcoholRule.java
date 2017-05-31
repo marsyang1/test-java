@@ -25,10 +25,9 @@ public class AlcoholRule extends BasicRule {
     }
 
     @Action
-    public void execute(Facts facts){
+    public void execute(Facts facts) throws Exception{
         Person person = (Person) facts.get("person");
-        log.info("Shop: Sorry " + person.getName()+ ", you are not allowed to buy alcohol");
-        System.out.println();
+        throw new IllegalStateException("Shop: Sorry " + person.getName()+ ", you are not allowed to buy alcohol");
     }
 
 }

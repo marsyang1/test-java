@@ -9,7 +9,6 @@ import org.jeasy.rules.core.RulesEngineBuilder;
 import org.junit.Test;
 
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by USER on 2017/5/31.
