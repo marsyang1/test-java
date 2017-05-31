@@ -1,9 +1,9 @@
 package com.mars.test.easyrule;
 
 import lombok.extern.slf4j.Slf4j;
-import org.easyrules.annotation.Action;
-import org.easyrules.annotation.Condition;
-import org.easyrules.core.BasicRule;
+import org.jeasy.rules.annotation.Action;
+import org.jeasy.rules.annotation.Condition;
+import org.jeasy.rules.core.BasicRule;
 
 /**
  * Created by USER on 2017/5/24.

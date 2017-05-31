@@ -1,6 +1,6 @@
 package com.mars.test.easyrule.fizz;
 
-import org.easyrules.core.CompositeRule;
+import org.jeasy.rules.core.CompositeRule;
 
 /**
  * Created by USER on 2017/5/24.

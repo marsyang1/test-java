@@ -1,8 +1,9 @@
 package com.mars.test.easyrule;
 
 import lombok.extern.slf4j.Slf4j;
-import org.easyrules.annotation.Rule;
-import org.easyrules.core.BasicRule;
+import org.jeasy.rules.annotation.Rule;
+import org.jeasy.rules.api.Facts;
+import org.jeasy.rules.core.BasicRule;
 
 /**
  * Created by USER on 2017/5/24.
@@ -21,16 +22,25 @@ public class AgeRule extends BasicRule {
         this.person = person;
     }
 
-    @Override
     public boolean evaluate() {
         return person.getAge() > ADULT_AGE;
+
     }
 
-    @Override
     public void execute() {
         person.setAdult(true);
         log.info("Person "+person.getName()+" has been marked as adult");
     }
 
+    @Override
+    public boolean evaluate(Facts facts) {
+        return person.getAge() > ADULT_AGE;
+    }
 
+    @Override
+    public void execute(Facts facts) throws Exception {
+        super.execute(facts);
+        person.setAdult(true);
+        log.info("Person "+person.getName()+" has been marked as adult");
+    }
 }
