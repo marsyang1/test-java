@@ -53,4 +53,33 @@ public class ShopRuleTest {
 
     }
 
+    @Test
+    public void testEvaluateWithException() {
+        // create a rules set
+        Rules rules = new Rules();
+        rules.register(new AgeRule());
+        rules.register(new AlcoholRule());
+        rules.register(new AdultAlcoholRule());
+
+        // create a Listener
+        ShopRuleFailureListener listener = new ShopRuleFailureListener();
+
+        //create a rules engine and fire rules on known facts
+        RulesEngine rulesEngine = RulesEngineBuilder.aNewRulesEngine()
+                .withSilentMode(true)
+                .withSkipOnFirstFailedRule(true)
+                .withRuleListener(listener)
+                .build();
+
+        Facts facts = new Facts();
+        try {
+            rulesEngine.fire(rules, facts);
+            if (!listener.isSuccess()) {
+                log.warn(listener.getFailureMessage());
+            }
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+    }
+
 }

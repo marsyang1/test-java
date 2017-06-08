@@ -1,5 +1,6 @@
 package com.mars.test.easyrule.shop;
 
+import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.jeasy.rules.annotation.Rule;
 import org.jeasy.rules.api.Facts;
@@ -23,6 +24,7 @@ public class AgeRule extends BasicRule {
     @Override
     public boolean evaluate(Facts facts) {
         Person person = (Person) facts.get("person");
+        Preconditions.checkState(person != null,"person can't be empty");
         return person.getAge() > ADULT_AGE;
     }
 
