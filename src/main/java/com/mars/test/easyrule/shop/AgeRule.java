@@ -25,11 +25,14 @@ public class AgeRule extends BasicRule {
     public boolean evaluate(Facts facts) {
         Person person = (Person) facts.get("person");
         Preconditions.checkState(person != null,"person can't be empty");
+        facts.put("test","test");
         return person.getAge() > ADULT_AGE;
     }
 
     @Override
     public void execute(Facts facts) throws Exception {
+        String test = (String) facts.get("test");
+        log.info("test = " + test);
         Person person = (Person) facts.get("person");
         person.setAdult(true);
         log.info("Person "+person.getName()+" has been marked as adult");
