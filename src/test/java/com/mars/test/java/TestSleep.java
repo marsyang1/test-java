@@ -19,4 +19,11 @@ public class TestSleep {
         log.info("timer =" + stopwatch.toString());
     }
 
+    @Test
+    public void testSleep2() throws InterruptedException {
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        Thread.sleep(3 * 1000);
+        log.info("timer =" + stopwatch.toString());
+    }
+
 }
