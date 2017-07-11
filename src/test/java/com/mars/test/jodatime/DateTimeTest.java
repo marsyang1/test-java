@@ -2,6 +2,7 @@ package com.mars.test.jodatime;
 
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
@@ -41,7 +42,7 @@ public class DateTimeTest {
         // 設定時間到指定日期
         log.info("設定時間到2013");
         time = time.withDate(2013, 1, 1);
-        log.info("time = " +time.toString(TIME_PATTERN));
+        log.info("time = " + time.toString(TIME_PATTERN));
         // 設定時間到指定日期+2小時
         log.info("設定時間到2013/1/1+2小時");
         time = time.withDate(2013, 1, 1).plusHours(2);
@@ -100,10 +101,10 @@ public class DateTimeTest {
 
         log.info("測試週期的判斷   , use interval");
         Interval interval = new Interval(startTime, endTime);
-        log.info("now in interval = " +  interval.containsNow());
-        log.info("interval.contains(startTime) = " +  interval.contains(startTime));
-        log.info("interval.contains(endTime) = " +  interval.contains(endTime));
-        log.info("interval.contains(endTime.plusDays(1)) = " +  interval.contains(endTime.plusDays(1)));
+        log.info("now in interval = " + interval.containsNow());
+        log.info("interval.contains(startTime) = " + interval.contains(startTime));
+        log.info("interval.contains(endTime) = " + interval.contains(endTime));
+        log.info("interval.contains(endTime.plusDays(1)) = " + interval.contains(endTime.plusDays(1)));
 
         log.info("endTime > startTime = " + endTime.isAfter(startTime));
         log.info("endTime < startTime = " + endTime.isBefore(startTime));
@@ -126,17 +127,42 @@ public class DateTimeTest {
     }
 
     @Test
-    public void test2(){
-        DateTime  time = new DateTime().withTimeAtStartOfDay();
-        DateTime  testDate = new DateTime().withTimeAtStartOfDay();
+    public void test2() {
+        DateTime time = new DateTime().withTimeAtStartOfDay();
+        DateTime testDate = new DateTime().withTimeAtStartOfDay();
         log.info(" testDate.isAfter(time) = " + testDate.isAfter(time));
         log.info("System.currentTimeMillis() = " + System.currentTimeMillis());
     }
 
     @Test
-    public void testToString(){
+    public void testToString() {
         final String pattern = "yyyyMMddhhmmss";
-        log.info(" DateTime.toString("+pattern+") = " + DateTime.now().toString(pattern) );
+        log.info(" DateTime.toString(" + pattern + ") = " + DateTime.now().toString(pattern));
+    }
+
+
+    @Test
+    public void test3() {
+        final String timePattern = "yyyy-MM-dd HH:mm:ss";
+        DateTime startTime = new DateTime().minusDays(1).withTimeAtStartOfDay();
+        // 18:44:51
+        DateTime endTime = new DateTime(2017, 7, 4, 18, 44, 51);
+        log.info("startTime :" + startTime.toString(timePattern) + ", zone = " + startTime.getZone());
+        log.info("endTime :" + endTime.toString(timePattern) + ", zone = " + endTime.getZone());
+        DateTime utcStartTime = startTime.withZone(DateTimeZone.UTC);
+        DateTime utcEndTime = endTime.withZone(DateTimeZone.UTC);
+        log.info("utcStartTime :" + utcStartTime.toString(timePattern) + ", zone = " + utcStartTime.getZone());
+        log.info("utcEndTime :" + utcEndTime.toString(timePattern) + ", zone = " + utcEndTime.getZone());
+    }
+
+    @Test
+    public void test4() {
+        final String timePattern = "yyyy-MM-dd HH:mm:ss";
+        DateTime time = DateTime.now().withTimeAtStartOfDay();
+        // 18:44:51
+        log.info("startTime :" + time.toString(timePattern) + ", zone = " + time.getZone());
+        DateTime utcTime = time.withZone(DateTimeZone.UTC);
+        log.info("utcStartTime :" + utcTime.toString(timePattern) + ", zone = " + utcTime.getZone());
     }
 
 }

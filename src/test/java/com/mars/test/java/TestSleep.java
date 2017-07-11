@@ -26,4 +26,11 @@ public class TestSleep {
         log.info("timer =" + stopwatch.toString());
     }
 
+    @Test
+    public void tempTest(){
+        String text = "COUPON_SELF_PT_FIRST";
+        String[] strings = text.split("_");
+        log.info(" text = " + strings[2]);
+    }
+
 }
