@@ -2,6 +2,7 @@ package com.mars.test.jodatime;
 
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,6 +12,8 @@ import org.junit.Test;
  */
 @Slf4j
 public class TestInterval {
+
+    final String TIME_PATTERN="yyyy-MM-dd HH:mm:ss";
 
     @Test
     public void test1(){
@@ -85,5 +88,31 @@ public class TestInterval {
         Assert.assertTrue(interval.overlaps(intervalC));
         Assert.assertTrue(interval.overlaps(intervalD));
 
+    }
+
+
+    @Test
+    public void testDateTimeInterval(){
+        DateTime rangestart = DateTime.now().withTimeAtStartOfDay().minusHours(1);
+        DateTime rangeend = DateTime.now().withTimeAtStartOfDay().plusHours(1);
+        Interval interval = new Interval(rangestart,rangeend);
+        log.info("rangestart = " + rangestart.toString(TIME_PATTERN));
+        log.info("rangeend = " + rangeend.toString(TIME_PATTERN));
+        log.info("interval = " + interval);
+
+        log.info("interval.contains( now() ) = "+interval.contains(DateTime.now()));
+        log.info("interval.contains( startOfDay() ) = "+interval.contains(DateTime.now().withTimeAtStartOfDay()));
+    }
+
+    @Test
+    public void testDateTimeIntervalUTC(){
+        DateTime rangestart = DateTime.now(DateTimeZone.UTC).withTimeAtStartOfDay().withZone(DateTimeZone.getDefault()).minusHours(1);
+        DateTime rangeend = DateTime.now(DateTimeZone.UTC).withTimeAtStartOfDay().withZone(DateTimeZone.getDefault()).plusHours(1);
+        Interval interval = new Interval(rangestart,rangeend);
+        log.info("rangestart = " + rangestart.toString(TIME_PATTERN));
+        log.info("rangeend = " + rangeend.toString(TIME_PATTERN));
+        log.info("interval = " + interval);
+        log.info("interval.contains( now() ) = "+interval.contains(DateTime.now()));
+        log.info("interval.contains( startOfDay() ) = "+interval.contains(DateTime.now().withTimeAtStartOfDay()));
     }
 }

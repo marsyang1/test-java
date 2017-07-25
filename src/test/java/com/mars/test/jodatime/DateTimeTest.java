@@ -143,26 +143,54 @@ public class DateTimeTest {
 
     @Test
     public void test3() {
-        final String timePattern = "yyyy-MM-dd HH:mm:ss";
+        final String TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
         DateTime startTime = new DateTime().minusDays(1).withTimeAtStartOfDay();
         // 18:44:51
         DateTime endTime = new DateTime(2017, 7, 4, 18, 44, 51);
-        log.info("startTime :" + startTime.toString(timePattern) + ", zone = " + startTime.getZone());
-        log.info("endTime :" + endTime.toString(timePattern) + ", zone = " + endTime.getZone());
+        log.info("startTime :" + startTime.toString(TIME_PATTERN) + ", zone = " + startTime.getZone());
+        log.info("endTime :" + endTime.toString(TIME_PATTERN) + ", zone = " + endTime.getZone());
         DateTime utcStartTime = startTime.withZone(DateTimeZone.UTC);
         DateTime utcEndTime = endTime.withZone(DateTimeZone.UTC);
-        log.info("utcStartTime :" + utcStartTime.toString(timePattern) + ", zone = " + utcStartTime.getZone());
-        log.info("utcEndTime :" + utcEndTime.toString(timePattern) + ", zone = " + utcEndTime.getZone());
+        log.info("utcStartTime :" + utcStartTime.toString(TIME_PATTERN) + ", zone = " + utcStartTime.getZone());
+        log.info("utcEndTime :" + utcEndTime.toString(TIME_PATTERN) + ", zone = " + utcEndTime.getZone());
     }
 
     @Test
     public void test4() {
-        final String timePattern = "yyyy-MM-dd HH:mm:ss";
-        DateTime time = DateTime.now().withTimeAtStartOfDay();
+        final String TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+        DateTime time = DateTime.now().minusDays(1).withTimeAtStartOfDay();
         // 18:44:51
-        log.info("startTime :" + time.toString(timePattern) + ", zone = " + time.getZone());
+        log.info("startTime :" + time.toString(TIME_PATTERN) + ", zone = " + time.getZone());
         DateTime utcTime = time.withZone(DateTimeZone.UTC);
-        log.info("utcStartTime :" + utcTime.toString(timePattern) + ", zone = " + utcTime.getZone());
+        log.info("utcStartTime :" + utcTime.toString(TIME_PATTERN) + ", zone = " + utcTime.getZone());
     }
+
+    @Test
+    public void test5() {
+        DateTime yesterday = DateTime.now().minusDays(1);
+        DateTime startTime = yesterday.withTimeAtStartOfDay();
+        DateTime endTime = yesterday.plusDays(1).withTimeAtStartOfDay().minusSeconds(1);
+        log.info("startTime :" + startTime.toString(TIME_PATTERN) + ", zone = " + startTime.getZone());
+        log.info("endTime :" + endTime.toString(TIME_PATTERN) + ", zone = " + endTime.getZone());
+        DateTime utcStartTime = startTime.withZone(DateTimeZone.UTC);
+        DateTime utcEndTime = endTime.withZone(DateTimeZone.UTC);
+        log.info("utcStartTime :" + utcStartTime.toString(TIME_PATTERN) + ", zone = " + utcStartTime.getZone());
+        log.info("utcEndTime :" + utcEndTime.toString(TIME_PATTERN) + ", zone = " + utcEndTime.getZone());
+    }
+
+    @Test
+    public void test6() {
+        DateTime startTime  = DateTime.now().withTimeAtStartOfDay().minusDays(1).plusHours(8);
+        DateTime endTime = DateTime.now().withTimeAtStartOfDay().plusHours(7).plusMinutes(59).plusSeconds(59);
+        log.info("startTime :" + startTime.toString(TIME_PATTERN) + ", zone = " + startTime.getZone());
+        log.info("endTime :" + endTime.toString(TIME_PATTERN) + ", zone = " + endTime.getZone());
+    }
+    
+    @Test
+    public void test7SettingDateTimeWithZone(){
+        DateTime startTime = DateTime.now(DateTimeZone.UTC).withTimeAtStartOfDay();
+        log.info("startTime :" + startTime.toString(TIME_PATTERN) + ", zone = " + startTime.getZone());
+    }
+
 
 }

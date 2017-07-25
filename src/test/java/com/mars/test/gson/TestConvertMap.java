@@ -25,4 +25,5 @@ public class TestConvertMap {
         Map<String, String> myMap = gson.fromJson("{'k1':'apple','k2':'orange'}", type);
         log.info("test convert = " + myMap);
     }
+
 }
