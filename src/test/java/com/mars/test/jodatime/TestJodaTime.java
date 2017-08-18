@@ -58,10 +58,18 @@ public class TestJodaTime {
             DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
             DateTime dt = formatter.parseDateTime(inputDate);
             log.info("Test Date format = " + dt);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             log.error("Illegal Data Argument");
         }
+    }
+
+    @Test
+    public void testDateFormatWithNull() {
+        String inputDate = "";
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTime dt = formatter.parseDateTime(inputDate);
+        log.info("Test Date format = " + dt);
     }
 
     @Test

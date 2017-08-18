@@ -5,7 +5,6 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Maps;
-import com.google.common.math.DoubleMath;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -28,30 +27,34 @@ public class TestGuavaCache {
 
     @Test
     public void testCache() throws ExecutionException {
-        normalCache.put("pt111",System.currentTimeMillis());
-        normalCache.put("mg112",System.currentTimeMillis());
-        normalCache.put("qt113",System.currentTimeMillis());
+        log.info("testing cache , intervalTime = " + INTERVAL_MINUTE + " Second");
+        normalCache.put("pt111", System.currentTimeMillis());
+        normalCache.put("mg112", System.currentTimeMillis());
+        normalCache.put("qt113", System.currentTimeMillis());
         ConcurrentMap<String, Long> map = normalCache.asMap();
-        normalCache.asMap().forEach((key,value)->{
-            log.info("map key = " + key +" , value = " + value);
+        normalCache.asMap().forEach((key, value) -> {
+            log.info("map key = " + key + " , value = " + value);
         });
         log.info("map get pt111 " + normalCache.asMap().get("pt111"));
         // test after time limit
         try {
             Thread.sleep(2000);
-        } catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        normalCache.asMap().forEach((key,value)->{
-            log.info("map key = " + key +" , value = " + value);
+        log.info("sleep after 2 second ....");
+        normalCache.asMap().forEach((key, value) -> {
+            log.info("map key = " + key + " , value = " + value);
         });
         log.info("map size = " + map.size());
-        log.info("map get pt111 " + normalCache.asMap().get("pt111"));
+        log.info("normalCache size = " + normalCache.size());
+        log.info("normalCache stats = " + normalCache.stats());
+        log.info("map get pt111 " + normalCache.getIfPresent("pt111"));
         log.info("done");
     }
 
 
-    final Map<String,Long> mockDao = Maps.newConcurrentMap();
+    final Map<String, Long> mockDao = Maps.newConcurrentMap();
     final LoadingCache<String, Long> loadingCache = CacheBuilder.newBuilder()
             .maximumSize(10000)
             .expireAfterWrite(1, TimeUnit.SECONDS)
@@ -66,11 +69,11 @@ public class TestGuavaCache {
     @Test
     public void testLoadingCache() throws ExecutionException, InterruptedException {
         long timeStamp = System.currentTimeMillis();
-        mockDao.put("pt111",timeStamp);
+        mockDao.put("pt111", timeStamp);
         // update pt111 value
         Thread.sleep(500);                 //1000 milliseconds is one second.
         long newTimeStamp = System.currentTimeMillis();
-        mockDao.put("pt111",newTimeStamp);
+        mockDao.put("pt111", newTimeStamp);
         long cachedTimeStamp = loadingCache.get("pt111");
         Thread.sleep(2000);                 //1000 milliseconds is one second.
         cachedTimeStamp = loadingCache.get("pt111");
