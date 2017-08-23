@@ -10,6 +10,14 @@ import org.junit.Test;
 @Slf4j
 public class TestGuavaPreCondition {
 
+    @Test
+    public void testPrecondition() throws IllegalStateException {
+        try{
+            Preconditions.checkState(false,"测试错误Msg");
+        } catch (IllegalStateException ise){
+            log.info("errorMsg = " + ise.getMessage());
+        }
+    }
 
 
     @Test(expected = NullPointerException.class)
@@ -36,17 +44,6 @@ public class TestGuavaPreCondition {
     public void testCheckState() {
         Preconditions.checkState(isActive(), "Cannot perform action because not initialized.");
     }
-
-
-    @Test
-    public void testPrecondition() throws IllegalStateException {
-        try{
-            Preconditions.checkState(false,"测试错误Msg");
-        } catch (IllegalStateException ise){
-            log.info("errorMsg = " + ise.getMessage());
-        }
-    }
-
 
     public boolean isActive() {
         return false;
