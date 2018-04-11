@@ -2,7 +2,6 @@ package com.mars.test.java.concurrency;
 
 import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 
 import java.util.stream.IntStream;
 
@@ -16,7 +15,7 @@ public class SyncMultiCounterTest {
      * test synchronized effect range
      * @throws Exception
      */
-    @Test
+//    @Test
     public void addCount() throws Exception {
         Stopwatch stopwatch = Stopwatch.createStarted();
         final MultiCounter counter = new SyncMultiCounter();

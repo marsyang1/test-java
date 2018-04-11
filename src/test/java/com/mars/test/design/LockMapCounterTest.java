@@ -5,7 +5,6 @@ import com.mars.test.java.concurrency.Counter;
 import com.mars.test.java.concurrency.LockCounter;
 import com.mars.test.java.concurrency.SyncCounter;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 
 import java.util.stream.IntStream;
 
@@ -15,7 +14,7 @@ import java.util.stream.IntStream;
 @Slf4j
 public class LockMapCounterTest {
 
-    @Test
+//    @Test
     public void addCount() throws Exception {
         Stopwatch stopwatch = Stopwatch.createStarted();
         final Counter counter = new LockCounter();
@@ -25,7 +24,7 @@ public class LockMapCounterTest {
         log.info("stopwatch = " + stopwatch);
     }
 
-    @Test
+//    @Test
     public void syncCounter() throws Exception {
         Stopwatch stopwatch = Stopwatch.createStarted();
         final Counter counter = new SyncCounter();
