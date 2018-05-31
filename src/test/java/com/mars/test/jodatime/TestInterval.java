@@ -13,41 +13,57 @@ import org.junit.Test;
 @Slf4j
 public class TestInterval {
 
-    final String TIME_PATTERN="yyyy-MM-dd HH:mm:ss";
+    final String TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     @Test
-    public void test1(){
+    public void testDayInInterval() {
+        DateTime someDay1 = DateTime.parse("2018-05-30");
+        DateTime someDay2 = DateTime.parse("2018-08-01");
+        DateTime someDay3 = DateTime.parse("2018-08-30");
+        DateTime rangestart = DateTime.parse("2018-08-01T00:00:00");
+        DateTime rangeend = DateTime.parse("2018-08-30T23:59:59");
+        Interval interval = new Interval(rangestart, rangeend);
+
+        log.info("date interval:" + interval);
+        log.info("date interval.contain(2018-05-30) = " + interval.contains(someDay1));
+        log.info("date interval.contain(2018-08-01) = " + interval.contains(someDay2));
+        log.info("date interval.contain(2018-05-30) = " + interval.contains(someDay3));
+
+    }
+
+    @Test
+    public void test1() {
         DateTime rangestart = DateTime.parse("2016-08-01");
         DateTime rangeend = DateTime.parse("2016-08-30");
-        Interval interval = new Interval(rangestart,rangeend);
+        Interval interval = new Interval(rangestart, rangeend);
 
         DateTime rangeAstart = DateTime.parse("2016-07-01");
         DateTime rangeAend = DateTime.parse("2016-07-30");
-        Interval intervalA = new Interval(rangeAstart,rangeAend);
+        Interval intervalA = new Interval(rangeAstart, rangeAend);
 
         DateTime rangeBstart = DateTime.parse("2016-07-30");
         DateTime rangeBend = DateTime.parse("2016-08-02");
-        Interval intervalB = new Interval(rangeBstart,rangeBend);
+        Interval intervalB = new Interval(rangeBstart, rangeBend);
 
         DateTime rangeCstart = DateTime.parse("2016-08-15");
         DateTime rangeCend = DateTime.parse("2016-08-16");
-        Interval intervalC = new Interval(rangeCstart,rangeCend);
+        Interval intervalC = new Interval(rangeCstart, rangeCend);
 
         DateTime rangeDstart = DateTime.parse("2016-08-25");
         DateTime rangeDend = DateTime.parse("2016-09-05");
-        Interval intervalD = new Interval(rangeDstart,rangeDend);
+        Interval intervalD = new Interval(rangeDstart, rangeDend);
 
         DateTime rangeEstart = DateTime.parse("2016-09-01");
         DateTime rangeEend = DateTime.parse("2016-09-30");
-        Interval intervalE = new Interval(rangeEstart,rangeEend);
+        Interval intervalE = new Interval(rangeEstart, rangeEend);
 
         DateTime rangeFstart = DateTime.parse("2016-07-01");
         DateTime rangeFend = DateTime.parse("2016-08-01");
-        Interval intervalF = new Interval(rangeFstart,rangeFend);
+        Interval intervalF = new Interval(rangeFstart, rangeFend);
 
         DateTime rangeGstart = DateTime.parse("2016-08-30");
         DateTime rangeGend = DateTime.parse("2016-09-30");
-        Interval intervalG = new Interval(rangeGstart,rangeGend);
+        Interval intervalG = new Interval(rangeGstart, rangeGend);
 
         log.info("interval = " + interval);
         log.info("interval A = " + intervalA);
@@ -92,27 +108,27 @@ public class TestInterval {
 
 
     @Test
-    public void testDateTimeInterval(){
+    public void testDateTimeInterval() {
         DateTime rangestart = DateTime.now().withTimeAtStartOfDay().minusHours(1);
         DateTime rangeend = DateTime.now().withTimeAtStartOfDay().plusHours(1);
-        Interval interval = new Interval(rangestart,rangeend);
+        Interval interval = new Interval(rangestart, rangeend);
         log.info("rangestart = " + rangestart.toString(TIME_PATTERN));
         log.info("rangeend = " + rangeend.toString(TIME_PATTERN));
         log.info("interval = " + interval);
 
-        log.info("interval.contains( now() ) = "+interval.contains(DateTime.now()));
-        log.info("interval.contains( startOfDay() ) = "+interval.contains(DateTime.now().withTimeAtStartOfDay()));
+        log.info("interval.contains( now() ) = " + interval.contains(DateTime.now()));
+        log.info("interval.contains( startOfDay() ) = " + interval.contains(DateTime.now().withTimeAtStartOfDay()));
     }
 
     @Test
-    public void testDateTimeIntervalUTC(){
+    public void testDateTimeIntervalUTC() {
         DateTime rangestart = DateTime.now(DateTimeZone.UTC).withTimeAtStartOfDay().withZone(DateTimeZone.getDefault()).minusHours(1);
         DateTime rangeend = DateTime.now(DateTimeZone.UTC).withTimeAtStartOfDay().withZone(DateTimeZone.getDefault()).plusHours(1);
-        Interval interval = new Interval(rangestart,rangeend);
+        Interval interval = new Interval(rangestart, rangeend);
         log.info("rangestart = " + rangestart.toString(TIME_PATTERN));
         log.info("rangeend = " + rangeend.toString(TIME_PATTERN));
         log.info("interval = " + interval);
-        log.info("interval.contains( now() ) = "+interval.contains(DateTime.now()));
-        log.info("interval.contains( startOfDay() ) = "+interval.contains(DateTime.now().withTimeAtStartOfDay()));
+        log.info("interval.contains( now() ) = " + interval.contains(DateTime.now()));
+        log.info("interval.contains( startOfDay() ) = " + interval.contains(DateTime.now().withTimeAtStartOfDay()));
     }
 }

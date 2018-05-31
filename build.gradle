@@ -26,6 +26,7 @@ dependencies {
             'io.reactivex.rxjava2:rxjava:2.1.4',
             'io.dropwizard.metrics:metrics-core:4.0.2',
             'org.bouncycastle:bcpkix-jdk15on:1.59',
+            'com.github.davidmoten:ppk:0.1.8',
     )
     compile 'com.github.davidmoten:ppk:0.1.8'
     compile 'com.maxmind.geoip2:geoip2:2.11.0'

@@ -14,10 +14,14 @@ import org.junit.Test;
 import javax.crypto.Cipher;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Base64;
 
+/**
+ * https://github.com/davidmoten/ppk
+ */
 @Slf4j
 public class TestRsaEncryptTest {
 
@@ -65,7 +69,32 @@ public class TestRsaEncryptTest {
         byte[] decryptBase64bytes = Base64.getDecoder().decode(encryptBase64String);
         byte[] secret = decrypt(privateKey, decryptBase64bytes);
         log.info(new String(secret));     // This is a secret message
-        Assert.assertEquals(targetEncryptText,new String(secret));
+        Assert.assertEquals(targetEncryptText, new String(secret));
+
+    }
+
+
+    @Test
+    public void testEncryptWithPpkLibrary() throws IOException {
+        String content = "Hello World";
+
+        File publicKeyFile = new File(Thread.currentThread().getContextClassLoader().getResource("publickey.pem").getFile());
+        File privateKeyFile = new File(Thread.currentThread().getContextClassLoader().getResource("privatekey.pem").getFile());
+
+        PEMParser pemParser = new PEMParser(new FileReader(privateKeyFile));
+        PEMKeyPair keyPair = (PEMKeyPair) pemParser.readObject();
+        PrivateKeyInfo info = keyPair.getPrivateKeyInfo();
+        JcaPEMKeyConverter CONVERTER = new JcaPEMKeyConverter();
+        PrivateKey privateKey = CONVERTER.getPrivateKey(info);
+
+        pemParser = new PEMParser(new FileReader(publicKeyFile));
+        SubjectPublicKeyInfo publicKeyInfo = (SubjectPublicKeyInfo) pemParser.readObject();
+        PublicKey publicKey = CONVERTER.getPublicKey(publicKeyInfo);
+
+//        String base64 =
+//                PPK.publicKey(publicKey)
+//                        .encryptAsBase64("mypassword");
+//        System.out.println(base64);
 
     }
 
